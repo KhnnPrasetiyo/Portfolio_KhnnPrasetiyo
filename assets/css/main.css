@@ -73,7 +73,7 @@ Index Of css
 }
 
 .project-area .grid .our-project > .title h4 {
-  font: normal 700 10px/12px var(--roboto);
+  font: 10px var(--roboto)
 }
 
 .project-area .grid .our-project .img a:hover img {
@@ -126,7 +126,7 @@ Index Of css
 
 /* Add a grey background color on mouse-over */
 .btn:hover {
-  background-color: #ddd;
+  background-color: rgb(238, 157, 157);
 }
 
 /* Add a dark background color to the active button */

@@ -23,7 +23,7 @@ app.use('/js', express.static(path.resolve(__dirname, 'assets/js')));
 app.use("/", routes);
 
 // run server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3030;
 app.listen(PORT, () =>
     console.log(`Example app listening at http://localhost:${PORT}`)
 )

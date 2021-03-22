@@ -1,9 +1,10 @@
 var nodemailer = require('nodemailer');
-const { spawnSync } = require('child_process');
-const alert = require('alert');
+var validator = require('validator');
+
 
 
 const sendEmail = async (req, res) => {
+    const validEmail = validator.isEmail(email);
 
     var name = req.body.name;
     var email = req.body.email;
@@ -27,11 +28,15 @@ const sendEmail = async (req, res) => {
     };
 
     await transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-            res.end('Email gagal terkirim, silahkan kembali ke halaman utama!\n\n' + error)
+        if (validEmail) {
+            if (error) {
+                console.log(error);
+                res.end('Email gagal terkirim, silahkan kembali ke halaman utama!\n\n' + error)
+            } else {
+                res.end('Email berhasil terkirim, silahkan kembali ke halaman utama!')
+            }
         } else {
-            res.end('Email berhasil terkirim, silahkan kembali ke halaman utama!')
+            res.end('Email gagal terkirim karena email salah!, silahkan kembali ke halaman utama!')
         }
     });
 }
@@ -39,6 +44,8 @@ const sendEmail = async (req, res) => {
 const sendMailSubs = async (req, res) => {
 
     var email = req.body.email;
+
+    const validEmail = validator.isEmail(email);
 
     var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -58,11 +65,15 @@ const sendMailSubs = async (req, res) => {
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-            res.end('Email gagal terkirim, silahkan kembali ke halaman utama!\n\n' + error)
+        if (validEmail) {
+            if (error) {
+                console.log(error);
+                res.end('Email gagal terkirim, silahkan kembali ke halaman utama!\n\n' + error)
+            } else {
+                res.end('Email berhasil terkirim, silahkan kembali ke halaman utama!')
+            }
         } else {
-            res.end('Email berhasil terkirim, silahkan kembali ke halaman utama!')
+            res.end('Email gagal terkirim karena email salah!, silahkan kembali ke halaman utama!')
         }
     });
 }
